@@ -10,18 +10,34 @@
         <!--Entries-->
         <scene sceneID="1MX-Gh-hXx">
             <objects>
-                <tableViewController id="AKt-Ur-gZu" sceneMemberID="viewController">
+                <tableViewController id="AKt-Ur-gZu" customClass="EntriesListTableViewController" customModule="JournalCloudKit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nqe-8L-Peh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="entryCell" id="Eu4-ba-Uwf">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="entryCell" textLabel="qnL-A0-vr4" detailTextLabel="bel-0c-Uyd" style="IBUITableViewCellStyleSubtitle" id="Eu4-ba-Uwf">
+                                <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Eu4-ba-Uwf" id="Qdl-fS-Lhu">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qnL-A0-vr4">
+                                            <rect key="frame" x="20" y="10" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bel-0c-Uyd">
+                                            <rect key="frame" x="20" y="31.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="mPZ-wR-fbD" kind="show" id="TKn-i2-oJN"/>
@@ -33,16 +49,22 @@
                             <outlet property="delegate" destination="AKt-Ur-gZu" id="Zhb-vb-YrK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Entries" id="1gd-kE-ZHQ"/>
+                    <navigationItem key="navigationItem" title="Entries" id="1gd-kE-ZHQ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="bi9-8C-tSs">
+                            <connections>
+                                <segue destination="mPZ-wR-fbD" kind="show" identifier="toEntryDetailVC" id="n8j-b1-2Jm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5c1-dv-DwK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="387" y="144"/>
         </scene>
-        <!--View Controller-->
+        <!--Entries Detail View Controller-->
         <scene sceneID="hdj-8B-SDA">
             <objects>
-                <viewController id="mPZ-wR-fbD" sceneMemberID="viewController">
+                <viewController id="mPZ-wR-fbD" customClass="EntriesDetailViewController" customModule="JournalCloudKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2TE-nb-xsH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,6 +92,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Soh-NN-XK5">
                                         <rect key="frame" x="189" y="707" width="36" height="67"/>
                                         <state key="normal" title="Clear"/>
+                                        <connections>
+                                            <action selector="clearButtonTapped:" destination="mPZ-wR-fbD" eventType="touchUpInside" id="PAN-qL-62S"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -84,6 +109,10 @@
                         <viewLayoutGuide key="safeArea" id="Nbk-9p-kYs"/>
                     </view>
                     <navigationItem key="navigationItem" id="JdQ-fi-twI"/>
+                    <connections>
+                        <outlet property="entriesBodyText" destination="Hzg-tl-CLE" id="FMr-G9-bgu"/>
+                        <outlet property="entriesTitleLabel" destination="eAF-v4-xR0" id="GZe-WA-6Ng"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmr-5Z-2Sa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,4 +135,7 @@
             <point key="canvasLocation" x="-366" y="144"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="n8j-b1-2Jm"/>
+    </inferredMetricsTieBreakers>
 </document>
